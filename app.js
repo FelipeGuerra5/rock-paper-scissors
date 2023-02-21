@@ -13,16 +13,9 @@ possibleChoices.forEach(possibleChoice => possibleChoice.addEventListener('click
 }))
 
 function generateComputerChoice() {
-    const randomNumber = Math.floor(Math.random() * possibleChoices.length) + 1
-
-    switch(randomNumber) {
-        case 1:
-            return 'rock'
-        case 2:
-            return 'paper'
-        case 3:
-            return 'scissors'
-    }
+    const randomNumber = Math.floor(Math.random() * possibleChoices.length)
+    const arr = ['rock', 'paper', 'scissors']
+    return arr[randomNumber]
 }
 
 function getResult(u , c) {
