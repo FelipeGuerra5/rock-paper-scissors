@@ -2,56 +2,34 @@ const computerChoiceDisplay = document.getElementById('computer-choice')
 const userChoiceDisplay = document.getElementById('user-choice')
 const resultDisplay = document.getElementById('result')
 const possibleChoices = document.querySelectorAll('.button')
-let userChoice
-let computerChoice
-let result
 
 possibleChoices.forEach(possibleChoice => possibleChoice.addEventListener('click', (e) => {
-    userChoice = e.target.id
-    let userChoiseStr = userChoice.toString()
-    userChoiceDisplay.innerHTML = userChoiseStr.toUpperCase()
-    generateComputerChoice()
-    getResult()
+    let userChoice = e.target.id
+    userChoiceDisplay.innerHTML = userChoice
+    let computerChoice = generateComputerChoice()
+    computerChoiceDisplay.innerHTML = computerChoice
+    console.log(userChoice, computerChoice)
+    resultDisplay.innerHTML = getResult(userChoice, computerChoice)
 }))
 
 function generateComputerChoice() {
     const randomNumber = Math.floor(Math.random() * possibleChoices.length) + 1
-    
+
     switch(randomNumber) {
         case 1:
-            computerChoice = 'rock'
-            break
+            return 'rock'
         case 2:
-            computerChoice = 'paper'
-            break
+            return 'paper'
         case 3:
-            computerChoice = 'scissors'
-            break
+            return 'scissors'
     }
-
-    computerChoiceDisplay.innerHTML = computerChoice
 }
 
-function getResult() {
-    console.log(userChoice)
-    console.log(computerChoice)
-    if (userChoice === computerChoice) {
-        result = 'Draw!'
-    }
-    
-    result = userChoice ==='rock' && computerChoice === 'scissors' ? "You win": ""
-
-    if (userChoice === 'paper' && computerChoice === 'rock') {
-        result = 'You win!'
-    }
-    if (userChoice === 'paper' && computerChoice === 'scissors') {
-        result = 'You Loose!'
-    }
-    if (userChoice === 'scissors' && computerChoice === 'paper') {
-        result = 'You win!'
-    }
-    if (userChoice === 'scissors' && computerChoice === 'rock') {
-        result = 'You loose!'
-    }
-    resultDisplay.innerHTML = result
+function getResult(u , c) {
+    if (u === c) return 'Draw!'
+    if ((u === 'rock' && c === "scissors") || 
+        (u === 'paper' && c === "rock") ||
+        (u === 'scissors' && c === "paper") 
+        ) return 'You Win!'
+        return 'You Lost!'
 }
