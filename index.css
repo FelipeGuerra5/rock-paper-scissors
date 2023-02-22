@@ -1,0 +1,27 @@
+body{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+#container{
+    width: 400px;
+    max-height: 600px;
+    display: flex;
+    align-items:flex-start;
+    /* justify-items: center; */
+    /* flex-wrap: wrap; */
+    flex-direction: column;
+}
+
+.choices{
+    align-self: center;
+    width: 80%;
+    height: 25px;
+    margin-top: 15px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+

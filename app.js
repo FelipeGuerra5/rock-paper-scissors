@@ -1,15 +1,73 @@
-const computerChoiceDisplay = document.getElementById('computer-choice')
-const userChoiceDisplay = document.getElementById('user-choice')
-const resultDisplay = document.getElementById('result')
-const possibleChoices = document.querySelectorAll('.button')
+const container = document.getElementById('container')
 
+// Display
+const display = document.createElement('div')
+display.classList.add('display')
+container.appendChild(display)
+
+// Choices div
+const displayButtons = document.createElement('div')
+displayButtons.classList.add('choices')
+container.appendChild(displayButtons)
+
+// Create h2 and span
+const pcChoiceSpan = document.createElement('span')
+pcChoiceSpan.classList.add('computer-choice')
+
+const pcChoice = document.createElement('h2')
+pcChoice.innerHTML = "Computer's Choice: "
+pcChoice.appendChild(pcChoiceSpan)
+display.appendChild(pcChoice)
+
+// Create h2 and span
+const userChoiceSpan = document.createElement('span')
+userChoiceSpan.classList.add('user-choice')
+
+const userChoice = document.createElement('h2')
+userChoice.innerHTML = 'User Choice: '
+userChoice.appendChild(userChoiceSpan)
+display.appendChild(userChoice)
+
+// Create h2 and span
+const resultSpan = document.createElement('span')
+resultSpan.classList.add('result')
+
+const result = document.createElement('h2')
+result.innerHTML = 'Result: '
+result.appendChild(resultSpan)
+display.appendChild(result)
+
+// Create Button Rock
+const buttonRock = document.createElement('button')
+buttonRock.classList.add('button')
+buttonRock.id = 'rock'
+buttonRock.innerHTML = 'Rock'
+displayButtons.appendChild(buttonRock)
+
+// Create Button Paper
+const buttonPaper = document.createElement('button')
+buttonPaper.classList.add('button')
+buttonPaper.id = 'paper'
+buttonPaper.innerHTML = 'Paper'
+displayButtons.appendChild(buttonPaper)
+
+// Create Button Scissors
+const buttonScissors = document.createElement('button')
+buttonScissors.classList.add('button')
+buttonScissors.id = 'scissors'
+buttonScissors.innerHTML = 'Scissors'
+displayButtons.appendChild(buttonScissors)
+
+console.log('hello world')
+
+const possibleChoices = document.querySelectorAll('.button')
 possibleChoices.forEach(possibleChoice => possibleChoice.addEventListener('click', (e) => {
     let userChoice = e.target.id
-    userChoiceDisplay.innerHTML = userChoice
+    userChoiceSpan.innerHTML = userChoice
     let computerChoice = generateComputerChoice()
-    computerChoiceDisplay.innerHTML = computerChoice
+    pcChoiceSpan.innerHTML = computerChoice
     console.log(userChoice, computerChoice)
-    resultDisplay.innerHTML = getResult(userChoice, computerChoice)
+    resultSpan.innerHTML = getResult(userChoice, computerChoice)
 }))
 
 function generateComputerChoice() {
