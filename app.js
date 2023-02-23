@@ -1,66 +1,119 @@
 const container = document.getElementById('container')
 
+// Structure build
+function makeElement(dic) { // Accepts => id, text, classes=[], children=[], parent
+    const element = document.createElement(dic['tag'])
+    dic['id'] ? element.id = dic['id'] : "" 
+    dic['text'] ? element.innerHTML = dic['text'] : ""
+    dic['classes'] ? dic['classes'].forEach((item) => element.classList.add(item)) : ""
+    dic['children'] ? dic['children'].forEach((item) => element.appendChild(item)) : ""
+    dic['parent'] ? dic['parent'].appendChild(element) : ""
+    return element
+}
 
-// Display
-const display = document.createElement('div')
-display.classList.add('display')
-container.appendChild(display)
+const title = makeElement(
+    {
+        'tag':'h1',
+        'text':'Rock, Paper, Scissors',
+        'parent':container
+    }
+)
+ 
+const display = makeElement(
+    {
+        'tag':'div',
+        'classes':['diplay'],
+        'parent':container
+    }
+)
 
-// Choices div
-const displayButtons = document.createElement('div')
-displayButtons.classList.add('choices')
-container.appendChild(displayButtons)
+const displayButtons = makeElement(
+    {
+        'tag':'div',
+        'classes':['choices'],
+        'parent':container
+    }
+)
 
-// Create h2 and span
-const pcChoiceSpan = document.createElement('span')
-pcChoiceSpan.classList.add('computer-choice')
+const pcChoiceSpan = makeElement(
+    {
+        'tag':'span',
+        'classes':['computer-choice']
+    }
+)
 
-const pcChoice = document.createElement('h2')
-pcChoice.innerHTML = "Computer's Choice: "
-pcChoice.appendChild(pcChoiceSpan)
-display.appendChild(pcChoice)
+const pcChoice = makeElement(
+    {
+        'tag':'h2',
+        'text': "Computer's Choice: ",
+        'children':[pcChoiceSpan],
+        'parent':display
+    }
+)
 
-// Create h2 and span
-const userChoiceSpan = document.createElement('span')
-userChoiceSpan.classList.add('user-choice')
+const userChoiceSpan = makeElement(
+    {
+        'tag':'span',
+        'classes':['user-choice']
+    }
+)
+        
+const userChoice = makeElement(
+    {
+        'tag':'h2',
+        'text':"User's Choice: ",
+        'children':[userChoiceSpan],
+        'parent':display
+    }
+)
+            
+const resultSpan = makeElement(
+    {
+        'tag':'span',
+        'classes':['result']
+    }
+)
 
-const userChoice = document.createElement('h2')
-userChoice.innerHTML = 'User Choice: '
-userChoice.appendChild(userChoiceSpan)
-display.appendChild(userChoice)
+const result = makeElement(
+    {
+        'tag':'h2',
+        'text': "Result: ",
+        'children':[resultSpan],
+        'parent':display
+    }
+)
 
-// Create h2 and span
-const resultSpan = document.createElement('span')
-resultSpan.classList.add('result')
+const buttonRock = makeElement(
+    {
+        'tag':'button',
+        'classes':['button'],
+        'id':'rock',
+        'text':'Rock',
+        'parent':displayButtons
+    }
+)
 
-const result = document.createElement('h2')
-result.innerHTML = 'Result: '
-result.appendChild(resultSpan)
-display.appendChild(result)
+const buttonPaper = makeElement(
+    {
+        'tag':'button',
+        'classes':['button'],
+        'id':'paper',
+        'text':'Paper',
+        'parent':displayButtons
+    }
+)
 
-// Create Button Rock
-const buttonRock = document.createElement('button')
-buttonRock.classList.add('button')
-buttonRock.id = 'rock'
-buttonRock.innerHTML = 'Rock'
-displayButtons.appendChild(buttonRock)
+const buttonScissors = makeElement(
+    {
+        'tag':'button',
+        'classes':['button'],
+        'id':'scissors',
+        'text':'Scissors',
+        'parent':displayButtons
+    }
+)
 
-// Create Button Paper
-const buttonPaper = document.createElement('button')
-buttonPaper.classList.add('button')
-buttonPaper.id = 'paper'
-buttonPaper.innerHTML = 'Paper'
-displayButtons.appendChild(buttonPaper)
-
-// Create Button Scissors
-const buttonScissors = document.createElement('button')
-buttonScissors.classList.add('button')
-buttonScissors.id = 'scissors'
-buttonScissors.innerHTML = 'Scissors'
-displayButtons.appendChild(buttonScissors)
-
-console.log('hello world')
-
+// Logic of It
 const possibleChoices = document.querySelectorAll('.button')
 possibleChoices.forEach(possibleChoice => possibleChoice.addEventListener('click', (e) => {
     let userChoice = e.target.id
