@@ -116,7 +116,6 @@ span {
 
 @media screen and (orientation: landscape) {
     #container {
-        max-height: 90%;
         padding: 1%;
     }
 
